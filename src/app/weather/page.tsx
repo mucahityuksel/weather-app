@@ -8,8 +8,9 @@ import returnWeatherImage from "./weather";
 
 const Weather = () => {
     const [data, setData] = useState<any>()
+    const [value, setValue] = useState<string>("istanbul");
     const getDataFromApi = () => {
-        fetch('http://api.openweathermap.org/data/2.5/forecast?q=istanbul&appid=9fb7d9b4e987c28ab154bf67186be167',
+        fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=9fb7d9b4e987c28ab154bf67186be167`,
             {
                 method: "GET"
             }
@@ -26,8 +27,9 @@ const Weather = () => {
             <div className="flex justify-start w-full px-15 py-10 uppercase color-black font-sans">
                 weather app
             </div>
-            <div className="flex flex-col justify-center items-center relative px-5">
-                <Input type='text' className='bg-white outline-none p-3 rounded-3xl' placeholer='Search City' />
+            <div className="flex  justify-center items-center relative px-5">
+                <Input type='text' className='bg-white outline-none p-3 rounded-3xl bg-white/30' onChange={(e) => setValue(e.target.value)} placeholer='Search City' />
+                <img src='/search.svg' className="cursor-pointer rounded-xl" onClick={getDataFromApi}></img>
             </div>
             <div className="flex flex-col  justify-start items-center">
                 <div className="flex flex-col gap-1 justify-start w-full py-10 px-15 color-black">

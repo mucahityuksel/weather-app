@@ -8,11 +8,13 @@ const returnWeatherImage = (weather: string, pod: string) => {
             return pod === 'd' ? '/fewClouds.svg' : '/fewClouds-n.svg'
         case 'scattered clouds':
             return '/scattered.svg'
+        case 'overcast clouds':
+            return '/scattered.svg'
         case 'broken clouds':
             return '/broken.svg'
         case 'shower rain':
             return '/showerRain.svg'
-        case 'rain':
+        case 'rain' :
             return '/rain.svg'
         case 'thunderstorm':
             return '/thunderstorm.svg'
@@ -20,6 +22,8 @@ const returnWeatherImage = (weather: string, pod: string) => {
             return '/snow.svg'
         case 'mist':
             return '/wind.svg'
+        case 'light rain':
+            return '/rain.svg'
         default:
             break;
     }
