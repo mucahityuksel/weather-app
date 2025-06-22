@@ -56,7 +56,7 @@ export default function Home() {
               <div className='flex flex-col p-6'>
                 <div className='flex gap-10 p-3'>
                   <div className='flex justify-start'>
-                    <img src='/clearSky.png' className='object-contain'></img>
+                    <img src='/clearSky.svg' className='object-contain'></img>
                     <div className='flex flex-col align-center'>
                       <span className='color-black'>{(data?.list[0]?.main?.temp - 273.15).toFixed(0)}C / {data?.list[0]?.main?.temp}K</span>
                       <span className='color-black'>{data?.city?.name}/{data?.city?.country}</span>
