@@ -2,6 +2,7 @@ type InputProps = {
     type: string;
     className?: string;
     placeholer?: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 };
 
 const Input = (props: InputProps) => {
@@ -11,6 +12,7 @@ const Input = (props: InputProps) => {
             type={props.type}
             className={props.className}
             placeholder={props.placeholer}
+            onChange={props.onChange}
         ></input>
     )
 
