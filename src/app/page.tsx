@@ -34,28 +34,38 @@ export default function Home() {
 
   return (
     <div className="relative">
-      <img
-        src='/image.png'
-        className='w-full h-dvh object-cover blur-xs'
-      ></img>
+      
       <div className='absolute w-full h-full top-0 bg-white opacity-50'>
 
       </div>
-      <div className={`opacity-100 absolute top-0 w-full input-container ${startAnimation ? 'move-up' : ''}`}>
+      <div className={`opacity-100 flex flex-col  justify-center items-center absolute top-0 w-full input-container ${startAnimation ? 'move-up' : ''}`}>
+        <div className='current-weather h-60 -top-30 p-10 '>
+          <div className=' w-full h-full rounded-md'>
+            <div className='flex justify-between w-full  h-full'>
+              <div className='px-20 flex flex-col items-center'>
+                <span className='text-5xl'>{data?.city?.name}</span>
+                <span className='text-xl'>{moment(new Date()).format(" DD MMMM, HH:MM")}</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='flex justify-center relative w-full p-10'>
-          <div className='relative w-160  '>
+          <div className='relative w-160 margin-auto '>
             <Input type='text' className='opacity-100 w-full p-10' placeholer='Search City' />
             <div className='w-full h-50 bg-white color-black absolute top-15 rounded-md'>
               <div className='flex flex-col p-6'>
-                {
-                  data?.list.map((item: any, key: number) => {
-                    return <div key={key} className='flex gap-10 p-3'>
-                      <img src='/clearSky.png'></img>
-                      <span className='color-black'>{data?.city?.name}</span>
-                      <span className='color-black'>{moment(item?.dt_txt).format("YYYY-MM-DD")}</span>
+                <div className='flex gap-10 p-3'>
+                  <div className='flex justify-start'>
+                    <img src='/clearSky.svg' className='object-contain'></img>
+                    <div className='flex flex-col align-center'>
+                      <span className='color-black'>{(data?.list[0]?.main?.temp - 273.15).toFixed(0)}C / {data?.list[0]?.main?.temp}K</span>
+                      <span className='color-black'>{data?.city?.name}/{data?.city?.country}</span>
+                      <span className='color-black'>{moment(new Date()).format(" DD MMMM, HH:MM")}</span>
                     </div>
-                  })
-                }
+                    <div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
