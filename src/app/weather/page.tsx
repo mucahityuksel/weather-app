@@ -9,28 +9,54 @@ import returnWeatherImage from "./weather";
 const Weather = () => {
     const [data, setData] = useState<any>()
     const [value, setValue] = useState<string>("istanbul");
+    const [errorMessage, setErrorMessage] = useState<string>("")
+    const [isSuccess, setIsSuccess] = useState(true);
     const getDataFromApi = () => {
         fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=9fb7d9b4e987c28ab154bf67186be167`,
             {
                 method: "GET"
             }
         ).then((res) => res.json())
-            .then((res) => setData(res))
+            .then((res) => {
+                if (res?.cod === "200") {
+                    setData(res)
+                    setIsSuccess(true)
+                } else if (res?.cod === "404") {
+                    setIsSuccess(false);
+                    setErrorMessage(res?.message)
+                } else {
+                    setIsSuccess(false);
+                    setErrorMessage("Network Error")
+                }
+            })
             .catch((err) => console.log(err))
     }
 
     useEffect(() => {
         getDataFromApi()
     }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsSuccess(true)
+        }, 1500)
+    }, [isSuccess === false])
     return <div className="relative w- h-cover bg-cover  weather-main">
         <div className="flex flex-col">
             <div className="flex justify-start w-full px-15 py-10 uppercase color-black font-sans">
                 weather app
             </div>
             <div className="flex  justify-center items-center relative px-5">
-                <Input type='text' className='bg-white outline-none p-3 rounded-3xl bg-white/30' onChange={(e) => setValue(e.target.value)} placeholer='Search City' />
+                <Input type='text' className='bg-white outline-none p-3 rounded-xl bg-white/30' onChange={(e) => setValue(e.target.value)} placeholer='Search City' />
                 <img src='/search.svg' className="cursor-pointer rounded-xl" onClick={getDataFromApi}></img>
             </div>
+            {
+                isSuccess === false && <div className="flex  justify-center items-center relative px-5">
+                    <div className="w-auto bg-white/20 color-red px-30 py-3 rounded-xl">
+                        {errorMessage}
+                    </div>
+                </div>
+            }
             <div className="flex flex-col  justify-start items-center">
                 <div className="flex flex-col gap-1 justify-start w-full py-10 px-15 color-black">
                     <span className="text-3xl font-sans">{data?.city?.name}, {data?.city?.country}</span>
