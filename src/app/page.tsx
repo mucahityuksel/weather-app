@@ -16,10 +16,10 @@ export default function Home() {
   const [value, setValue] = useState<string>("istanbul");
   const { city, unit, setCity, toggleUnit } = useWeatherStore();
   const { data, error, isLoading } = useWeatherData(city, unit);
-  const [myData, setMyData] = useState<any>(data);
+  const [myData, setMyData] = useState(data);
 
-  const [type, setType] = useState(myData === 'imperial' ? '°F' : '°C')
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [, setType] = useState(myData === 'imperial' ? '°F' : '°C')
+  const [isOpen, setIsOpen] = useState(false);
   const [historyData, setHistoryData] = useState<any[]>([])
   useEffect(() => {
     setType(unit === 'imperial' ? '°F' : '°C')

@@ -1,7 +1,6 @@
 'use client'
 import returnWeatherImage from "@/app/weather/weather";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
 type ModalProps = {

@@ -18,7 +18,7 @@ const Weather = () => {
     const { data, error, isLoading } = useWeatherData(city, unit);
     const [myData, setMyData] = useState<any>(data);
 
-    const [type, setType] = useState(myData === 'imperial' ? '°F' : '°C')
+    const [, setType] = useState(myData === 'imperial' ? '°F' : '°C')
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [historyData, setHistoryData] = useState<any[]>([])
     useEffect(() => {
