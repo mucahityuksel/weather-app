@@ -10,6 +10,7 @@ import { useWeatherStore } from "@/store/useWeatherStore";
 import { useWeatherData } from "@/hooks/useWeatherData";
 import ErrorMessage from "@/components/ErrorMessage";
 import Modal from "@/components/Modal";
+import { DataItem, ExtendedDataItem, ListType } from "@/types";
 
 export default function Home() {
 
@@ -20,7 +21,7 @@ export default function Home() {
 
   const [, setType] = useState(myData === 'imperial' ? '°F' : '°C')
   const [isOpen, setIsOpen] = useState(false);
-  const [historyData, setHistoryData] = useState<any[]>([])
+  const [historyData, setHistoryData] = useState([])
   useEffect(() => {
     setType(unit === 'imperial' ? '°F' : '°C')
   }, [unit])
@@ -40,8 +41,8 @@ export default function Home() {
 
   useEffect(() => {
     if (myData?.cod === "200") {
-      setHistoryData((prevItems) => {
-        const isExist = prevItems.some(item => item.city.name === myData.city.name);
+      setHistoryData((prevItems:any) => {
+        const isExist = prevItems.some((item: any) => item?.city?.name === myData.city.name);
         if (isExist) return prevItems;
         const updated = [...prevItems, myData];
         localStorage.setItem("historyData", JSON.stringify(updated));
@@ -71,7 +72,7 @@ export default function Home() {
         <img src='/history.svg' className="cursor-pointer w-10 rounded-xl" onClick={() => setIsOpen(true)}></img>
 
       </div>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} historyData={historyData} getData={(data: any) => {
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} historyData={historyData} getData={(data : ExtendedDataItem) => {
         setMyData(data)
         setIsOpen(false)
       }} />
@@ -133,7 +134,7 @@ export default function Home() {
           <div className="flex  w-full justify-center  items-center py-15 w-full margin-auto px-15">
             <Swiper spaceBetween={10} slidesPerView={9}>
               {
-                myData?.list?.map((item: any, key: number) => {
+                myData?.list?.map((item: ListType, key: number) => {
                   return <SwiperSlide key={key}>
                     <div className="flex flex-col gap-1 justify-between items-center bg-white/20 rounded-xl h-32 py-2">
                       <span className="text-xs font-sans">{moment.unix(item.dt).format("MM.DD")}</span>

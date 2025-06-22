@@ -3,11 +3,12 @@ import returnWeatherImage from "@/app/weather/weather";
 import moment from "moment";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
+import { DataItem, ExtendedDataItem, ListType } from "@/types";
 type ModalProps = {
     isOpen: boolean;
     onClose: () => void;
-    historyData: any[];
-    getData: (data : any) => void;
+    historyData: ExtendedDataItem[];
+    getData: (data: ExtendedDataItem) => void;
 };
 
 const Modal = ({ isOpen, onClose, historyData, getData }: ModalProps) => {
@@ -29,7 +30,7 @@ const Modal = ({ isOpen, onClose, historyData, getData }: ModalProps) => {
                     <div className="">
                         <Swiper spaceBetween={10} slidesPerView={3}>
                             {
-                                data?.map((item: any, key: number) => {
+                                data?.map((item: ExtendedDataItem, key: number) => {
                                     const weather = item?.list[0];
                                     const city = item?.city;
                                     if (key > data.length - 6) {
