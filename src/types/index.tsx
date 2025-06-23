@@ -1,17 +1,3 @@
-export type ExtendedDataItem = {
-  type: 'metric' | 'imperial';
-  city: {
-    country: string;
-    name: string;
-    sunrise: number;
-    sunset: number;
-  };
-  cnt: number;
-  cod: string;
-  list: ListType[];
-  message: string;
-};
-
 export type ModalProps = {
   isOpen: boolean;
   onClose: () => void;

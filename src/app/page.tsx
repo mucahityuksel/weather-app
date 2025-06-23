@@ -10,7 +10,7 @@ import { useWeatherStore } from "@/store/useWeatherStore";
 import { useWeatherData } from "@/hooks/useWeatherData";
 import ErrorMessage from "@/components/ErrorMessage";
 import Modal from "@/components/Modal";
-import { DataItem, ListType } from "@/types";
+import {  DataItem, ListType } from "@/types";
 
 export default function Home() {
 
@@ -21,7 +21,7 @@ export default function Home() {
 
   const [, setType] = useState(myData === 'imperial' ? '°F' : '°C')
   const [isOpen, setIsOpen] = useState(false);
-  const [historyData, setHistoryData] = useState([])
+  const [historyData, setHistoryData] = useState<DataItem[]>([])
   useEffect(() => {
     setType(unit === 'imperial' ? '°F' : '°C')
   }, [unit])
@@ -41,8 +41,8 @@ export default function Home() {
 
   useEffect(() => {
     if (myData?.cod === "200") {
-      setHistoryData((prevItems:any) => {
-        const isExist = prevItems.some((item: any) => item?.city?.name === myData.city.name);
+      setHistoryData((prevItems: DataItem[]) => {
+        const isExist = prevItems.some((item: DataItem) => item?.city?.name === myData.city.name);
         if (isExist) return prevItems;
         const updated = [...prevItems, myData];
         localStorage.setItem("historyData", JSON.stringify(updated));
@@ -72,7 +72,7 @@ export default function Home() {
         <img src='/history.svg' className="cursor-pointer w-10 rounded-xl" onClick={() => setIsOpen(true)}></img>
 
       </div>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} historyData={historyData} getData={(data : any) => {
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} historyData={historyData} getData={(data : DataItem) => {
         setMyData(data)
         setIsOpen(false)
       }} />

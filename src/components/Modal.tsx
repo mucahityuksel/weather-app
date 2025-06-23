@@ -3,7 +3,7 @@ import returnWeatherImage from "@/app/weather/weather";
 import moment from "moment";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
-import { DataItem, ListType, ModalProps } from "@/types";
+import { DataItem, ModalProps } from "@/types";
 
 
 const Modal = ({ isOpen, onClose, historyData, getData }: ModalProps) => {
