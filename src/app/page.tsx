@@ -11,6 +11,7 @@ import { useWeatherData } from "@/hooks/useWeatherData";
 import ErrorMessage from "@/components/ErrorMessage";
 import Modal from "@/components/Modal";
 import { DataItem, ListType } from "@/types";
+import WeatherMain from "@/components/WeatherHeader";
 
 export default function Home() {
 
@@ -70,9 +71,8 @@ export default function Home() {
           {myData?.type === 'metric' ? '°C' : '°F'}
         </button>
         <img src='/history.svg' className="cursor-pointer w-10 rounded-xl" onClick={() => setIsOpen(true)}></img>
-
       </div>
-      <div className="flex  w-195 relative px-5 gap-1 margin-auto-1">
+      <div className="flex relative px-5 gap-1 margin-auto-1 -ml-15">
         <div className="flex flex-col">
           {
             historyData?.map((item: DataItem, key: number) => {
@@ -102,46 +102,7 @@ export default function Home() {
             <span className="text-3xl font-sans">{myData?.city?.name}, {myData?.city?.country}</span>
             <span className="text-sm font-sans">{moment(new Date()).format("MMMM DD  dddd , HH:MM")}</span>
           </div>
-          <div className="flex flex-wrap w-full justify-center gap-5 items-center w-full margin-auto">
-            <div className="flex flex-wrap w-3xs justify-center gap-2 items-center p-2 color-black main-weather rounded-xl ">
-              <img src={returnWeatherImage(myData?.list[0]?.weather[0]?.description, myData?.list[0]?.sys?.pod)} className='object-contain w-200'></img>
-              <div className="flex flex-col">
-                <span className="text-5xl">{myData?.list[0]?.main?.temp + (myData?.type === 'metric' ? '°C' : '°F')}</span>
-                <span className="text-nowrap font-sans text-xs uppercase">{myData?.list[0]?.weather[0]?.description}</span>
-              </div>
-            </div>
-            <div className="flex w-3xs justify-center gap-2 items-center bg-white/20 px-2 w-80 color-black rounded-xl weather-detail">
-              <div className="flex flex-wrap justify-between items-center ">
-                <div className="flex flex-col  p-3 justify-start">
-                  <span className="text-2xl">{(myData?.list[0]?.main?.temp_max)?.toFixed(0) + (myData?.type === 'metric' ? '°C' : '°F')}</span>
-                  <span className="text-nowrap font-sans text-sm">Hight</span>
-                </div>
-
-                <div className="flex flex-col  p-3 justify-start">
-                  <span className="text-2xl">{myData?.list[0]?.main?.temp_min + (myData?.type === 'metric' ? '°C' : '°F')}</span>
-                  <span className="text-nowrap font-sans text-sm">Low</span>
-                </div>
-
-                <div className="flex flex-col p-3 justify-start">
-                  <span className="text-2xl">{(myData?.list[0]?.wind?.speed)} m/s</span>
-                  <span className="text-nowrap font-sans text-sm">Wind</span>
-                </div>
-
-                <div className="flex flex-col p-3 justify-start">
-                  <span className="text-2xl">{moment.unix(myData?.city.sunrise).format("HH:mm a")}</span>
-                  <span className="text-nowrap font-sans text-sm">Sunrise</span>
-                </div>
-                <div className="flex flex-col p-3 justify-start">
-                  <span className="text-2xl">{moment.unix(myData?.city.sunset).format("hh:mm a")}</span>
-                  <span className="text-nowrap font-sans text-sm">Sunset</span>
-                </div>
-                <div className="flex flex-col p-3 justify-start">
-                  <span className="text-2xl">{(myData?.list[0]?.main?.humidity)} %</span>
-                  <span className="text-nowrap font-sans text-sm">Humidity</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <WeatherMain myData={myData}/>
           <div className="flex  w-full justify-center  items-center py-15 w-full margin-auto px-15">
             <Swiper spaceBetween={10} slidesPerView={9}>
               {

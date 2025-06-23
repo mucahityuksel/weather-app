@@ -4,7 +4,9 @@ export type ModalProps = {
   historyData: DataItem[];
   getData: (data: DataItem) => void;
 };
-
+export type WeatherHeaderType = {
+    myData: DataItem
+};
 
 export type DataItem = {
   city: {
