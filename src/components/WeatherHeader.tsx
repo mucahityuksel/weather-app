@@ -1,5 +1,5 @@
 import returnWeatherImage from "@/app/weather/weather";
-import { DataItem, WeatherHeaderType } from "@/types";
+import {WeatherHeaderType } from "@/types";
 import moment from "moment";
 
 
