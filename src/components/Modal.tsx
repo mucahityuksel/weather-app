@@ -23,14 +23,14 @@ const Modal = ({ isOpen, onClose, historyData, getData }: ModalProps) => {
                 <div className="flex flex-col">
                     <h1 className="text-2xl">History</h1>
                     <div className="">
-                        <Swiper spaceBetween={10} slidesPerView="auto">
+                        <Swiper spaceBetween={10} slidesPerView={5} >
                             {
                                 data?.map((item: DataItem, key: number) => {
                                     const weather = item?.list[0];
                                     const city = item?.city;
                                     if (key > data.length - 6) {
                                         return (
-                                            <SwiperSlide key={key}>
+                                            <SwiperSlide key={key} className="min-w-[140px]">
                                                 <div className="flex flex-col gap-1 justify-between color-black items-center bg-white rounded-xl h-52 py-2" onClick={() => {
                                                     getData(item)
                                                 }}>

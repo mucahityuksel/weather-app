@@ -56,7 +56,9 @@ input:focus {
   border-color: #000000;
 }
 
-
+.margin-auto-1{
+  margin: 0px auto
+}
 
 .main-weather > img{
   width: 180px;

@@ -72,6 +72,17 @@ export default function Home() {
         <img src='/history.svg' className="cursor-pointer w-10 rounded-xl" onClick={() => setIsOpen(true)}></img>
 
       </div>
+      <div className="flex  w-195 relative px-5 gap-1 margin-auto-1">
+        <div className="flex flex-col">
+          {
+            historyData?.map((item: DataItem, key: number) => {
+              if (key > historyData.length - 6) {
+                return <span key={key} className="text-xs cursor-pointer" onClick={()=> setMyData(item)}>{item?.city.name}</span>
+              }
+            })
+          }
+        </div>
+      </div>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} historyData={historyData} getData={(data: DataItem) => {
         setMyData(data)
         setIsOpen(false)
@@ -135,7 +146,7 @@ export default function Home() {
             <Swiper spaceBetween={10} slidesPerView={9}>
               {
                 myData?.list?.map((item: ListType, key: number) => {
-                  return <SwiperSlide key={key}>
+                  return <SwiperSlide key={key} className="min-w-[140px]">
                     <div className="flex flex-col gap-1 justify-between items-center bg-white/20 rounded-xl h-32 py-2">
                       <span className="text-xs font-sans">{moment.unix(item.dt).format("MM.DD")}</span>
                       <span className="text-sm font-sans">{moment.unix(item.dt).format("HH:MM a")}</span>
