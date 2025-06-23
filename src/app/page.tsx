@@ -20,7 +20,7 @@ export default function Home() {
   const [myData, setMyData] = useState(data);
 
   const [, setType] = useState(myData === 'imperial' ? '°F' : '°C')
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [historyData, setHistoryData] = useState<DataItem[]>([])
   useEffect(() => {
     setType(unit === 'imperial' ? '°F' : '°C')

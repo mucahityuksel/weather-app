@@ -1,5 +1,5 @@
 'use client'
-import returnWeatherImage from "@/app/weather/weather";
+import returnWeatherImage from "../app/weather/weather";
 import moment from "moment";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css'
@@ -23,7 +23,7 @@ const Modal = ({ isOpen, onClose, historyData, getData }: ModalProps) => {
                 <div className="flex flex-col">
                     <h1 className="text-2xl">History</h1>
                     <div className="">
-                        <Swiper spaceBetween={10} slidesPerView={3}>
+                        <Swiper spaceBetween={10} slidesPerView="auto">
                             {
                                 data?.map((item: DataItem, key: number) => {
                                     const weather = item?.list[0];
