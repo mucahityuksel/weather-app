@@ -10,7 +10,7 @@ import { useWeatherStore } from "@/store/useWeatherStore";
 import { useWeatherData } from "@/hooks/useWeatherData";
 import ErrorMessage from "@/components/ErrorMessage";
 import Modal from "@/components/Modal";
-import {  DataItem, ListType } from "@/types";
+import { DataItem, ListType } from "@/types";
 
 export default function Home() {
 
@@ -72,7 +72,7 @@ export default function Home() {
         <img src='/history.svg' className="cursor-pointer w-10 rounded-xl" onClick={() => setIsOpen(true)}></img>
 
       </div>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} historyData={historyData} getData={(data : DataItem) => {
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} historyData={historyData} getData={(data: DataItem) => {
         setMyData(data)
         setIsOpen(false)
       }} />
