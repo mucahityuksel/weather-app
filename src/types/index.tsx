@@ -15,8 +15,8 @@ export type ExtendedDataItem = {
 export type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  historyData: ExtendedDataItem[];
-  getData: (data: ExtendedDataItem) => void;
+  historyData: DataItem[];
+  getData: (data: DataItem) => void;
 };
 
 
@@ -31,6 +31,7 @@ export type DataItem = {
   cod: string;
   list: ListType[];
   message: string;
+  type: string;
 };
 
 export type ListType = {
